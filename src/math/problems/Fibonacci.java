@@ -24,7 +24,7 @@ public class Fibonacci {
           Write 40 Fibonacci numbers with java.
          */
 
-         printFib(5);
+         printFib(40);
 
     }
 }

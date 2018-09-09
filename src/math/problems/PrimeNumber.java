@@ -42,22 +42,22 @@ public class PrimeNumber {
 				list.add(i);
 			}
 
-//		ConnectToSqlDB conn = new ConnectToSqlDB();
-//			conn.insertIntegersFromArrayListToSqlTable(list,"Primes","value");
-//		try {
-//			Result = conn.readDataBase("Primes","values");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//
-//
-//		for (Object dbData: Result) {
-//			System.out.println((int)dbData);
-//		}
-
-		for (int num: list) {
-			System.out.println(num);
+		ConnectToSqlDB conn = new ConnectToSqlDB();
+			conn.insertIntegersFromArrayListToSqlTable(list,"Primes","value");
+		try {
+			Result = conn.readDataBase("Primes","values");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
+
+		for (Object dbData: Result) {
+			System.out.println((int)dbData);
+		}
+
+//		for (int num: list) {
+//			System.out.println(num);
+//		}
 
 	}
 
