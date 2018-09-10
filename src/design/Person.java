@@ -36,4 +36,8 @@ public abstract class Person {
     }
 
     public abstract void groceryBudget();
+
+    public  void function(){
+        System.out.println("I need to sleep and eat");
+    }
 }

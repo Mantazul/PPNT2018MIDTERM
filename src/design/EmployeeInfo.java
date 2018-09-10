@@ -61,7 +61,7 @@ public class EmployeeInfo extends Person implements Employee{
 	 * So you probably need to send 2 arguments.
 	 *
 	 */
-	public static int calculateEmployeeBonus(int numberOfYearsWithCompany){
+	public static double calculateEmployeeBonus(int numberOfYearsWithCompany){
 		double performence = 0;
 		if (numberOfYearsWithCompany >= 10){
 			performence = .10;
@@ -70,7 +70,8 @@ public class EmployeeInfo extends Person implements Employee{
 		}else if (numberOfYearsWithCompany < 5 && numberOfYearsWithCompany >=0 ){
 			performence = .02;
 		}
-		int total = (int) (Salary + Salary * performence);
+		double total = (Salary * performence);
+		System.out.println(total);
 		return total;
 	}
 
@@ -99,6 +100,7 @@ public class EmployeeInfo extends Person implements Employee{
 			pension += .05;
 		}
         total= (int) (Salary*pension);
+		System.out.println(total);
 		return total;
 	}
 
@@ -132,6 +134,11 @@ public class EmployeeInfo extends Person implements Employee{
 	public void groceryBudget() {
 		System.out.println("My yearly Grocery Bill is "+(double)(this.Salary*.05)+" Dollars");
 	}
+
+	public void function(){
+		System.out.println("I dont need sleep ,I need to work");
+	}
+
 
 	private static class DateConversion {
 
