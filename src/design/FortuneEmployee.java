@@ -15,6 +15,22 @@ public class FortuneEmployee {
 	 **/
 	public static void main(String[] args) {
 
+		// create a Employee object
+		Person emp1 = new EmployeeInfo("Selenium Testing","Juned", 12345,5.7,"Bengali");
+		System.out.println(((EmployeeInfo) emp1).employeeName());
+		System.out.println(((EmployeeInfo) emp1).getDept());
+		System.out.println(((EmployeeInfo) emp1).employeeId());
+		System.out.println(((EmployeeInfo) emp1).getEthnicity());
+		System.out.println(((EmployeeInfo) emp1).getHeight());
+		System.out.println(((EmployeeInfo) emp1).calculateSalary());
+		emp1.groceryBudget();
+		((EmployeeInfo) emp1).benefitLayout();
+		emp1.job();
+		emp1.function();
+		System.out.println();
+		((EmployeeInfo) emp1).calculateEmployeePension();
+		((EmployeeInfo) emp1).calculateEmployeeBonus();
+
 
 	}
 

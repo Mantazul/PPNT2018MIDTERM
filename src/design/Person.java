@@ -2,11 +2,11 @@ package design;
 
 public abstract class Person {
 
-    private float height;
+    private double height;
     private String ethnicity;
     public static final String species = "HomoSapien";
 
-    public Person(float height, String ethnicity) {
+    public Person(double height, String ethnicity) {
         this.height = height;
         this.ethnicity = ethnicity;
     }
@@ -15,11 +15,11 @@ public abstract class Person {
 
     }
 
-    public float getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public void setHeight(float height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 

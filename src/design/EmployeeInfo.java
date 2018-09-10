@@ -20,11 +20,12 @@ public class EmployeeInfo extends Person implements Employee{
 	/*
 	 * declare few static and final fields and some non-static fields
 	 */
-	static String companyName;
+	public static String companyName = "PPNT";
 	private int id;
 	private String name;
 	private String dept;
-	public static int Salary = 65000;
+	public static final int Salary = 65000;
+	public int years = 0;
 
 
 
@@ -38,6 +39,12 @@ public class EmployeeInfo extends Person implements Employee{
 	 * you must have multiple constructor.
 	 * Must implement below constructor.
 	 */
+
+	// default constructor
+	public EmployeeInfo(){
+
+	}
+
 	public EmployeeInfo(int employeeId){
          this.id = employeeId;
 	}
@@ -46,63 +53,89 @@ public class EmployeeInfo extends Person implements Employee{
            this.id = employeeId;
 	}
 
-	public EmployeeInfo(String name, int employeeId,float height,String ethnicity){
+	// constructor that uses the super keyword to invoke the parent class constructor
+	public EmployeeInfo(String name, int employeeId,double height,String ethnicity){
 		super(height, ethnicity);
 		this.name = name;
 		this.id = employeeId;
 	}
 
-
-	/*
-	 * This methods should calculate Employee bonus based on salary and performance.
-	 * Then it will return the total yearly bonus. So you need to implement the logic.
-	 * Hints: 10% of the salary for best performance, 8% of the salary for average performance and so on.
-	 * You can set arbitrary number for performance.
-	 * So you probably need to send 2 arguments.
-	 *
-	 */
-	public static double calculateEmployeeBonus(int numberOfYearsWithCompany){
-		double performence = 0;
-		if (numberOfYearsWithCompany >= 10){
-			performence = .10;
-		}else if (numberOfYearsWithCompany < 10 && numberOfYearsWithCompany >= 5){
-			performence = .05;
-		}else if (numberOfYearsWithCompany < 5 && numberOfYearsWithCompany >=0 ){
-			performence = .02;
-		}
-		double total = (Salary * performence);
-		System.out.println(total);
-		return total;
+	public EmployeeInfo(String Dept,String name, int employeeId,double height,String ethnicity){
+		super(height, ethnicity);
+		this.dept = Dept;
+		this.name = name;
+		this.id = employeeId;
 	}
 
-	/*
-	 * This methods should calculate Employee Pension based on salary and numbers of years with the company.
-	 * Then it will return the total pension. So you need to implement the logic.
-	 * Hints: pension will be 5% of the salary for 1 year, 10% for 2 years with the company and so on.
-	 *
-	 */
-	public static int calculateEmployeePension(){
-		int total=0;
-		Scanner sc  = new Scanner(System.in);
-		System.out.println("Please enter start date in format (example: May,2015): ");
-		String joiningDate = sc.nextLine();
-		System.out.println("Please enter today's date in format (example: August,2017): ");
-		String todaysDate = sc.nextLine();
-		String convertedJoiningDate = DateConversion.convertDate(joiningDate);
-		String convertedTodaysDate = DateConversion.convertDate(todaysDate);
 
-		//implement numbers of year from above two dates
-		int years = Integer.parseInt(convertedTodaysDate.substring(convertedTodaysDate.indexOf('/')+1,convertedTodaysDate.length()))- Integer.parseInt(convertedJoiningDate.substring(convertedJoiningDate.indexOf('/')+1,convertedJoiningDate.length()));
+		/*
+		 * This methods should calculate Employee bonus based on salary and performance.
+		 * Then it will return the total yearly bonus. So you need to implement the logic.
+		 * Hints: 10% of the salary for best performance, 8% of the salary for average performance and so on.
+		 * You can set arbitrary number for performance.
+		 * So you probably need to send 2 arguments.
+		 *
+		 */
 
-		//Calculate pension
-		double pension = .05;
-		for(int i = 0; i< years;i++){
-			pension += .05;
+
+
+
+
+		// note that the Bonus method should be run after the Pension method in order to get a accurate year value
+		public double calculateEmployeeBonus(){
+			double performence = 0;
+			if (years >= 10){
+				performence = .20;
+			}else if (years < 10 && years >= 5){
+				performence = .10;
+			}else if (years < 5 && years>=1 ){
+				performence = .05;
+			}else {
+				System.out.println("Sorry Bonuses are only for employees that have worked more than a year");
+			}
+			double total = (Salary * performence);
+			System.out.println("Bonus: "+total);
+			return total;
 		}
-        total= (int) (Salary*pension);
-		System.out.println(total);
-		return total;
-	}
+
+		/*
+		 * This methods should calculate Employee Pension based on salary and numbers of years with the company.
+		 * Then it will return the total pension. So you need to implement the logic.
+		 * Hints: pension will be 5% of the salary for 1 year, 10% for 2 years with the company and so on.
+		 *
+		 */
+		public int calculateEmployeePension(){
+			int total=0;
+			Scanner sc  = new Scanner(System.in);
+			System.out.println("Please enter start date in format (example: May,2015): ");
+			String joiningDate = sc.nextLine();
+			System.out.println("Please enter today's date in format (example: August,2017): ");
+			String todaysDate = sc.nextLine();
+
+			//implement numbers of year from above two dates
+			String convertedJoiningDate = DateConversion.convertDate(joiningDate);
+			String convertedTodaysDate = DateConversion.convertDate(todaysDate);
+			try {
+				this.years = Integer.parseInt(convertedTodaysDate.substring(convertedTodaysDate.indexOf('/')+1,convertedTodaysDate.length()))- Integer.parseInt(convertedJoiningDate.substring(convertedJoiningDate.indexOf('/')+1,convertedJoiningDate.length()));
+				if (this.years < 1){
+					System.out.println("Sorry Pensions are only for employees that have worked more than a year only");
+					return 0;
+				}
+
+			}catch (Exception e){
+				System.out.println("looks like there was an error, please try again");
+			}
+
+			//Calculate pension
+			double pension = .05;
+			for(int i = 0; i< this.years;i++){
+				pension += .05;
+			}
+			total = (int) (Salary*pension);
+			System.out.println("Pension: "+total);
+			return total;
+		}
+
 
 	@Override
 	public int employeeId() {
@@ -111,12 +144,12 @@ public class EmployeeInfo extends Person implements Employee{
 
 	@Override
 	public String employeeName() {
-		return this.employeeName();
+		return this.name;
 	}
 
 	@Override
-	public void assignDepartment() {
-		System.out.println("Employee is in Department Level 1");
+	public void assignDepartment(String d) {
+		this.dept = d;
 	}
 
 
@@ -138,6 +171,15 @@ public class EmployeeInfo extends Person implements Employee{
 	public void function(){
 		System.out.println("I dont need sleep ,I need to work");
 	}
+
+	public String getDept() {
+		return dept;
+	}
+
+	public void setDept(String dept) {
+		this.dept = dept;
+	}
+
 
 
 	private static class DateConversion {
