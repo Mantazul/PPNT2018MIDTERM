@@ -70,6 +70,8 @@ arrays are fixed,linked lists are dynamic, arrays have consatnt access time, whi
 however, insertion and deletion are constant in linked lists, while not in arrays
 
 What is DFS and BFS?
+depth first search is when when we try to visit the furthest nodes in a graph first, while breadth first search is when
+we visited the nodes level by level in order to stay as close to the root as possible
 
 What is Recursion?
 recursion is the process in which a method repeatedly calls itself with smaller data set then the last until a base case is reached
