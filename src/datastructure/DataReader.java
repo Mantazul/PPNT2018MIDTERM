@@ -1,5 +1,11 @@
 package datastructure;
 
+import java.io.*;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Stack;
+
 public class DataReader {
 
 	public static void main(String[] args) {
@@ -18,9 +24,44 @@ public class DataReader {
 		 * Use For Each loop/while loop/Iterator to retrieve data.
 		 */
 
-		String textFile = System.getProperty("user.dir") + "/src/data/self-driving-car.txt";
+		String textFile = "/Users/junedalam/Desktop/PPNT/MidtermJuly2018/src/data/self-driving-car";
+		File file = new File(textFile);
+		BufferedReader br = null;
+		String line = "";
+		String store = "";
+		try {
+			FileReader fr = new FileReader(textFile);
+			br = new BufferedReader(fr);
 
+			while ((line = br.readLine()) != null) {
+				store+=line;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
+		String[] storeArray = store.split(" ");
+		List<String> storeList = new LinkedList<String>();
+		Stack<String> storeStack = new Stack<String>();
+
+		for (String element: storeArray) {
+			storeList.add(element);
+			storeStack.push(element);
+		}
+		System.out.println("\n\nLinkedlist LIFO:");
+		Iterator<String> itr = storeList.iterator();
+		while (itr.hasNext()){
+			System.out.print(itr.next()+" ");
+		}
+		System.out.println("\n\nStack LIFO:");
+
+//		for (int k = 0; k<storeStack.size();k++){
+//			System.out.print(storeStack.pop()+ " ");
+//		}
+		while (!storeStack.isEmpty())
+		{
+			System.out.print(storeStack.pop() + " ");
+		}
 
 	}
 
