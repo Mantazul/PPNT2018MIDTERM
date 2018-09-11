@@ -132,7 +132,7 @@ public class Sort {
     }
 
 
-    void sort(int arr[], int l, int r)
+    void mergesort(int arr[], int l, int r)
     {
         final long startTime = System.currentTimeMillis();
         if (l < r)
@@ -141,8 +141,8 @@ public class Sort {
             int m = (l+r)/2;
 
             // Sort first and second halves
-            sort(arr, l, m);
-            sort(arr , m+1, r);
+            mergesort(arr, l, m);
+            mergesort(arr , m+1, r);
 
             // Merge the sorted halves
             merge(arr, l, m, r);
@@ -192,8 +192,8 @@ public class Sort {
 
             // Recursively sort elements before
             // partition and after partition
-            sort(arr, low, pi-1);
-            sort(arr, pi+1, high);
+            Quicksort(arr, low, pi-1);
+            Quicksort(arr, pi+1, high);
         }
         final long endTime = System.currentTimeMillis();
         final long executionTime = endTime - startTime;
@@ -214,16 +214,17 @@ public class Sort {
     }
 
 
-    public int[] Bucketsort(int[] sequence, int maxValue)
+    public int[] bucketsort(int[] sequence, int maxValue)
     {
         final long startTime = System.currentTimeMillis();
+
         // Bucket Sort
         int[] Bucket = new int[maxValue + 1];
         int[] sorted_sequence = new int[sequence.length];
 
-        for (int i = 0; i < sequence.length; i++)
+        for (int i = 0; i < sequence.length; i++) {
             Bucket[sequence[i]]++;
-
+        }
         int outPos = 0;
         for (int i = 0; i < Bucket.length; i++)
             for (int j = 0; j < Bucket[i]; j++)
@@ -233,8 +234,7 @@ public class Sort {
         final long executionTime = endTime - startTime;
         this.executionTime = executionTime;
         return sorted_sequence;
-
-    }
+        }
     
     public int [] shellSort(int [] array){
         int [] list = array;
