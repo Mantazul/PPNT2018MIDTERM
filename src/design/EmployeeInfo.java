@@ -164,12 +164,14 @@ public class EmployeeInfo extends Person implements Employee{
 	}
 
 	@Override
-	public void groceryBudget() {
+	public double groceryBudget() {
 		System.out.println("My yearly Grocery Bill is "+(double)(this.Salary*.05)+" Dollars");
+		return this.Salary*.05;
 	}
 
-	public void function(){
+	public String function(){
 		System.out.println("I dont need sleep ,I need to work");
+		return "I dont need sleep ,I need to work";
 	}
 
 	public String getDept() {

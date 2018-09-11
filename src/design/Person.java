@@ -31,13 +31,16 @@ public abstract class Person {
         this.ethnicity = ethnicity;
     }
 
-    public void job(){
+    public String job(){
         System.out.println("I work from 9 am to 5pm");
+        String ans = "I work from 9 am to 5pm";
+        return ans;
     }
 
-    public abstract void groceryBudget();
+    public abstract double groceryBudget();
 
-    public  void function(){
+    public String function(){
         System.out.println("I need to sleep and eat");
+        return  "I need to sleep and eat";
     }
 }
