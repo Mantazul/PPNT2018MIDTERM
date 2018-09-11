@@ -1,7 +1,5 @@
 package string.problems;
 
-import sun.applet.resources.MsgAppletViewer;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +8,8 @@ import java.util.Map;
  */
 public class DuplicateWord {
 
-    public static  void DuplicateWords(String str){
+    public static String DuplicateWords(String str){
+        String resultHolder = "";
         Map<String,Integer> map = new HashMap<String,Integer>();
         String[] arr = str.split(" ");
 
@@ -23,8 +22,9 @@ public class DuplicateWord {
         }
 
         for (Map.Entry entry: map.entrySet()) {
-            System.out.println(entry.getKey() +": "+entry.getValue());
+            resultHolder += entry.getKey() +": "+entry.getValue()+", ";
         }
+        return resultHolder;
     }
 
     public static void main(String[] args) {
@@ -34,7 +34,7 @@ public class DuplicateWord {
          */
 
         String st = "Java is a programming Language. Java is also an Island of Indonesia. Java is widely used language";
-        DuplicateWords(st);
+        System.out.println(DuplicateWords(st));
 
     }
 
