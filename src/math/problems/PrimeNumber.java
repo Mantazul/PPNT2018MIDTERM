@@ -21,6 +21,17 @@ public class PrimeNumber {
 		} return true;
 	}
 
+	public static int primeCount(){
+		int count;
+		count=0;
+
+		for (int i = 2; i <= 100000;i++)
+			if (isPrime(i)) {
+				count++;
+			}
+		return count;
+	}
+
 	public static void main(String[] args) {
 		/*
 		 * Find list of Prime numbers from number 2 to 1 million.
@@ -31,33 +42,9 @@ public class PrimeNumber {
 		 * Use any databases[MongoDB, Oracle, MySql] to store data and retrieve data.
 		 *
 		 */
-		int count;
-		count=0;
-		List<Integer> list = new ArrayList<Integer>();
-		List Result = new ArrayList();
-
-		for (int i = 2; i <= 1000;i++)
-			if (isPrime(i)) {
-				count++;
-				list.add(i);
-			}
-
-		ConnectToSqlDB conn = new ConnectToSqlDB();
-			conn.insertIntegersFromArrayListToSqlTable(list,"Primes","value");
-		try {
-			Result = conn.readDataBase("Primes","values");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
 
-		for (Object dbData: Result) {
-			System.out.println((int)dbData);
-		}
-
-//		for (int num: list) {
-//			System.out.println(num);
-//		}
+		System.out.println(primeCount());
 
 	}
 

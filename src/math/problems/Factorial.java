@@ -8,7 +8,8 @@ public class Factorial {
     public static int recFactorial(int n){
         if(n == 0){
             return 1;
-        }return n * recFactorial(n-1);
+        }
+        return n * recFactorial(n-1);
     }
 
     public static int Factorial(int n){
@@ -26,7 +27,9 @@ public class Factorial {
          *
          */
 
-        System.out.print(recFactorial(10) +" "+Factorial(10));
+        System.out.println(recFactorial(5));
+        System.out.println(Factorial(5));
+
 
     }
 }
