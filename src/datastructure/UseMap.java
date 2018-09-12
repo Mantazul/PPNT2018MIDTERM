@@ -1,5 +1,7 @@
 package datastructure;
 
+import databases.ConnectToSqlDB;
+
 import java.util.*;
 
 public class UseMap {
@@ -59,6 +61,17 @@ public class UseMap {
 			System.out.println(entry.getValue()+ "\n");
 		}
 
+		ConnectToSqlDB conn = new ConnectToSqlDB();
+		conn.insertStringDataFromArrayListToSqlTable(wishList,"WishList","wishes");
+		List<String> DBData = new ArrayList<String>();
+		try {
+			DBData = conn.readDataBase("WishList","wishes");
+			for (String str: DBData) {
+				System.out.println(str);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
