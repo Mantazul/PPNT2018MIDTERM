@@ -1,12 +1,13 @@
 package datastructure;
 
+import com.mongodb.*;
 import databases.ConnectToSqlDB;
 
 import java.util.*;
 
 public class UseMap {
 
-	public static void main(String[] args) {
+	public static void main(String[] args)throws Exception {
 		/*
 		 * Demonstrate how to use Map that includes storing and retrieving elements.
 		 * Add List<String> into a Map. Like, Map<String, List<string>> list = new HashMap<String, List<String>>();
@@ -61,16 +62,48 @@ public class UseMap {
 			System.out.println(entry.getValue()+ "\n");
 		}
 
-		ConnectToSqlDB conn = new ConnectToSqlDB();
-		conn.insertStringDataFromArrayListToSqlTable(wishList,"WishList","wishes");
-		List<String> DBData = new ArrayList<String>();
-		try {
-			DBData = conn.readDataBase("WishList","wishes");
-			for (String str: DBData) {
-				System.out.println(str);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+//		ConnectToSqlDB conn = new ConnectToSqlDB();
+//		conn.insertStringDataFromArrayListToSqlTable(wishList,"WishList","wishes");
+//		List<String> DBData = new ArrayList<String>();
+//		try {
+//			DBData = conn.readDataBase("WishList","wishes");
+//			for (String str: DBData) {
+//				System.out.println(str);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		DB database = mongoClient.getDB("listDB");
+		database.createCollection("lists",null);
+		DBCollection collection = database.getCollection("lists");
+
+//		//Do this Step only once to avoid multiple insertions
+//		BasicDBObject document1 = new BasicDBObject();
+//		document1.put("HP",HP);
+//		collection.insert(document1);
+//
+//		//Do this Step only once to avoid multiple insertions
+//		BasicDBObject document2 = new BasicDBObject();
+//		document2.put("vacation",faveSpots);
+//		collection.insert(document2);
+
+		// retrieve the lists from Database
+		BasicDBObject searchQuery = new BasicDBObject();
+		searchQuery.put("HP", HP);
+		DBCursor cursor = collection.find(searchQuery);
+		System.out.print("\nretrieved from DB");
+		while (cursor.hasNext()) {
+			System.out.println("\n"+cursor.next());
+		}
+
+		// retrieve the lists from Database
+		BasicDBObject searchQuery2 = new BasicDBObject();
+		searchQuery2.put("vacation",faveSpots);
+		DBCursor cursor2 = collection.find(searchQuery2);
+		System.out.print("\nretrieved from DB");
+		while (cursor2.hasNext()) {
+			System.out.println("\n"+cursor2.next());
 		}
 	}
 
